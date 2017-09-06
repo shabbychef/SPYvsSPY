@@ -1,2 +1,6 @@
 getdata.r
 .httr-oauth
+README.Rmd
+^cache$
+^data-raw$
+^.travis.yml$

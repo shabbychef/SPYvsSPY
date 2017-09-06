@@ -13,7 +13,6 @@
 #' @title Spy vs. Spy Data
 #' @description Historical data of Spy vs. Spy comic strip written by Antonio Prohias:
 #' issue number, date, outcome, and others.
-#' @docType data
 #' @usage data(svs)
 #' @format A \code{data.frame} object with 248 observations and 9 columns. 
 #' The columns are defined as follows:
@@ -51,10 +50,12 @@
 #' Mad Magazine, Mad Books, basically anybody but the package author.
 #' @name svs
 #' @rdname svs
+#' @docType data
+#' @keywords data
 #' @examples
 #' data(svs)
 #' str(svs)
-NULL
+"svs"
 
 #for vim modeline: (do not edit)
 # vim:fdm=marker:fmr=FOLDUP,UNFOLD:cms=#%s:syn=r:ft=r
