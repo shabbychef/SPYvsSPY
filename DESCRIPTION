@@ -6,7 +6,7 @@ Authors@R: c(person(c("Steven", "E."), "Pav", role=c("aut","cre"),
 Version: 0.1.1
 Date: 2017-09-04
 License: LGPL-3
-Title: Spy vs. SPY Data
+Title: Spy vs. Spy Data
 BugReports: https://github.com/shabbychef/SPYvsSPY/issues
 Description: Data on the Spy vs. Spy comic strip of Mad magazine, created and
    written by Antonio Prohias.
