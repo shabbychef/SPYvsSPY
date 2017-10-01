@@ -34,6 +34,9 @@ library(dplyr)
 # SPYvsSPY
 
 [![Build Status](https://travis-ci.org/shabbychef/SPYvsSPY.png)](https://travis-ci.org/shabbychef/SPYvsSPY)
+[![CRAN](http://www.r-pkg.org/badges/version/SPYvsSPY)](https://cran.r-project.org/package=SPYvsSPY)
+[![Downloads](http://cranlogs.r-pkg.org/badges/SPYvsSPY?color=green)](http://www.r-pkg.org/pkg/SPYvsSPY)
+[![Total](http://cranlogs.r-pkg.org/badges/grand-total/SPYvsSPY?color=green)](http://www.r-pkg.org/pkg/SPYvsSPY)
 
 ```{r spyplot,cache=TRUE,eval=TRUE,echo=FALSE,dpi=200,out.width='600px',out.height='500px'}
 library(dplyr)
@@ -174,10 +177,13 @@ of Spy vs Spy scholarship.
 ## Installation
 
 This package can be installed 
+from CRAN, 
 via [drat](https://github.com/eddelbuettel/drat "drat"), or
 from github:
 
 ```{r install,eval=FALSE,echo=TRUE}
+# via CRAN:
+install.packages("SPYvsSPY")
 # via drat:
 if (require(drat)) {
   drat:::add("shabbychef")
@@ -191,18 +197,85 @@ if (require(devtools)) {
 
 ## Use it
 
+First get a basic look at the data. The data are documented in the package. For
+each row we have the issue of Mad, the release date (as a character with format `%Y-%m`),
+the page in the Spy vs. Spy Omnibus, the author and artist of the strip,
+whether White Spy and Black Spy received a 'comeuppance' (_i.e._ were clubbed, 
+eaten by lion, shot, _etc._), whether the Grey Spy appears (only in the 60's), 
+and whether the victorious Spy flashes the 'V for Victory' sign (mostly in the
+80's).
+
 ```{r basic_usage,eval=TRUE,echo=TRUE}
 library(dplyr)
+library(knitr)
+library(SPYvsSPY)
+
+# this is it:
+data(svs)
+head(svs) %>%
+	kable()
+```
+
+Let's check on the appearances per year with a Stem-and-Leaf plot:
+
+```{r no_per_year,eval=TRUE,echo=TRUE}
 library(SPYvsSPY)
 # this is it:
 data(svs)
-
-svs %>% 
-  mutate(yrno=lubridate::year(as.Date(paste0(yrmo,'-01'),format='%Y-%m-%d'))) %>%
-  mutate(decade=10 * floor(yrno / 10)) %>% 
-  group_by(decade) %>%
-  summarize(num_strips=n(),
-            black_net_victory=sum(as.numeric(white_comeuppance) - as.numeric(black_comeuppance))) %>%
-  ungroup() %>%
-  kable()
+stem(as.numeric(gsub('^(\\d{4})-.+','\\1',svs$yrmo)),scale=0.5) 
 ```
+
+Compute a running net score of Black Spy victories:
+
+```{r net_victory,eval=TRUE,echo=TRUE}
+library(SPYvsSPY)
+# this is it:
+data(svs)
+svs %>%
+	mutate(black_victory=as.numeric(white_comeuppance) - as.numeric(black_comeuppance)) %>%
+	mutate(net_black_victory=cumsum(black_victory)) %>%
+	arrange(Mad_no) %>%
+	mutate(decade=10 * as.numeric(gsub('^(\\d{3}).+$','\\1',yrmo))) %>%
+	group_by(decade) %>%
+		summarize(running_tally_net_black_victory=last(net_black_victory)) %>%
+	ungroup() %>%
+	kable()
+```
+Nearly equal. 
+
+
+## Wald Wolfowitz
+
+The [Wald Wolfowitz test](https://en.wikipedia.org/wiki/Wald%E2%80%93Wolfowitz_runs_test)
+is a non-parametric test for the presence of serial correlation that is appropriate for
+binary series like this. The test is performed by computing the number of 'runs', which
+is to say the number of clusters of consecutive victories by one of the Spies. When the
+test statistic is too high 
+(compared to what would be observed if the data were serially independent), 
+then the data are too 'flippy', often reversing. 
+This would be the case if Prohias tried to keep score balance by always reversing the previous outcome.
+If the test statistic is too low, the data are too 'sticky', with long periods of one Spy prevailing
+over the other. This could happen if Prohias got moody and picked favorites, perhaps.
+
+The test is easy enough to run using the `randtests` package:
+
+```{r "ww",eval=TRUE,echo=TRUE,warning=FALSE,message=FALSE}
+library(randtests)
+subdata <- svs %>%
+	filter(Mad_no > 152) %>%
+	mutate(black_victory=as.numeric(white_comeuppance) - as.numeric(black_comeuppance)) %>%
+	filter(abs(black_victory) > 0.5)
+set.seed(1234)
+resu <- randtests::runs.test(subdata$black_victory,threshold=0)
+print(resu)
+```
+
+We get back a test statistic of `r signif(resu$statistic,2)`, indicating slightly
+greater than random amount of reversal. However, this is not statistically
+significantly different than the expected value of 0, with a p-value of
+`r signif(resu$p.value,2)`.  
+
+In conclusion, we have no evidence that Prohias kept running tally of Black
+and White Spy victories, and the data are consistent with the victor being
+chosen independently of the previous victories.
+
