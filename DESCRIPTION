@@ -1,10 +1,12 @@
 Package: SPYvsSPY
 Type: Package
 Maintainer: Steven E. Pav <shabbychef@gmail.com>
-Authors@R: c(person(c("Steven", "E."), "Pav", role=c("aut","cre"), 
-    email="shabbychef@gmail.com"))
-Version: 0.1.1
-Date: 2017-09-04
+Authors@R: c(person(c("Steven", "E."), "Pav", 
+    role=c("aut","cre"),
+    email="shabbychef@gmail.com",
+		comment = c(ORCID = "0000-0002-4197-6195")))
+Version: 0.1.2
+Date: 2018-03-25
 License: LGPL-3
 Title: Spy vs. Spy Data
 BugReports: https://github.com/shabbychef/SPYvsSPY/issues
