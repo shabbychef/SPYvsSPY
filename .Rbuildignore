@@ -4,3 +4,5 @@ README.Rmd
 ^cache$
 ^data-raw$
 ^.travis.yml$
+Rd2.pdf
+.Rd2pdf*
