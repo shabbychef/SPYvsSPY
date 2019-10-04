@@ -7,7 +7,7 @@
 
 # Created: 2017.09.04
 # Copyright: Steven E. Pav, 2017
-# Author: Steven E. Pav <steven@gilgamath.com>
+# Author: Steven E. Pav <shabbychef@gmail.com>
 # Comments: Steven E. Pav
 
 #' @title Spy vs. Spy Data
@@ -25,9 +25,9 @@
 #'  \code{\%Y-\%m}. The data run from January, 1961 through July, 1994.}
 #'  \item{\code{omnibus_page}}{The page the strip appears in the Spy vs. Spy
 #'  Omnibus.}
-#'  \item{\code{author}}{The listed author of the strip. This takes only one value, \sQuote{Antonio Prohias}.}
-#'  \item{\code{artist}}{The listed artist of the strip. This is mostly \sQuote{Antonio Prohias}, but later
-#'  strips with \sQuote{Bob Clarke} and \sQuote{David Manak} also appear.}
+#'  \item{\code{author}}{The listed author of the strip. This takes only one value, \dQuote{Antonio Prohias}.}
+#'  \item{\code{artist}}{The listed artist of the strip. This is mostly \dQuote{Antonio Prohias}, but later
+#'  strips with \dQuote{Bob Clarke} and \dQuote{David Manak} also appear.}
 #'  \item{\code{white_comeuppance}}{Whether the White Spy received a
 #'  \sQuote{comeuppance} in the strip. This varies from full-on bombing to losing plans to the Black Spy. 
 #'  In some strips, both Spies may be injured, with one Spy receiving a substantially greater injury; in
@@ -44,7 +44,7 @@
 #' Data were collated by the package author by analyzing the "Spy vs. Spy
 #' Omnibus", Mad Books, 2011, ISBN 978-1-4012-3237-5. 
 #' Any errors in transcription are the fault of the package author. 
-#' @author Steven E. Pav \email{steven@@gilgamath.com}
+#' @author Steven E. Pav \email{shabbychef@@gmail.com}
 #' @note This package is in no way endorsed by Mad Magazine. Spy vs. Spy
 #' remains the copyright property of Antonio Prohias, the Prohias Estate, 
 #' Mad Magazine, Mad Books, basically anybody but the package author.

@@ -15,9 +15,9 @@ The columns are defined as follows:
  \code{\%Y-\%m}. The data run from January, 1961 through July, 1994.}
  \item{\code{omnibus_page}}{The page the strip appears in the Spy vs. Spy
  Omnibus.}
- \item{\code{author}}{The listed author of the strip. This takes only one value, \sQuote{Antonio Prohias}.}
- \item{\code{artist}}{The listed artist of the strip. This is mostly \sQuote{Antonio Prohias}, but later
- strips with \sQuote{Bob Clarke} and \sQuote{David Manak} also appear.}
+ \item{\code{author}}{The listed author of the strip. This takes only one value, \dQuote{Antonio Prohias}.}
+ \item{\code{artist}}{The listed artist of the strip. This is mostly \dQuote{Antonio Prohias}, but later
+ strips with \dQuote{Bob Clarke} and \dQuote{David Manak} also appear.}
  \item{\code{white_comeuppance}}{Whether the White Spy received a
  \sQuote{comeuppance} in the strip. This varies from full-on bombing to losing plans to the Black Spy. 
  In some strips, both Spies may be injured, with one Spy receiving a substantially greater injury; in
@@ -52,6 +52,6 @@ data(svs)
 str(svs)
 }
 \author{
-Steven E. Pav \email{steven@gilgamath.com}
+Steven E. Pav \email{shabbychef@gmail.com}
 }
 \keyword{data}
