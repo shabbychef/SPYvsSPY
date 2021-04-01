@@ -2,7 +2,8 @@
 
 # SPYvsSPY
 
-[![Build Status](https://travis-ci.org/shabbychef/SPYvsSPY.png)](https://travis-ci.org/shabbychef/SPYvsSPY)
+
+[![Build Status](https://github.com/shabbychef/SPYvsSPY/workflows/R-CMD-check/badge.svg)](https://github.com/shabbychef/SPYvsSPY/actions)
 [![CRAN](http://www.r-pkg.org/badges/version/SPYvsSPY)](https://cran.r-project.org/package=SPYvsSPY)
 [![Downloads](http://cranlogs.r-pkg.org/badges/SPYvsSPY?color=green)](http://www.r-pkg.org/pkg/SPYvsSPY)
 [![Total](http://cranlogs.r-pkg.org/badges/grand-total/SPYvsSPY?color=green)](http://www.r-pkg.org/pkg/SPYvsSPY)

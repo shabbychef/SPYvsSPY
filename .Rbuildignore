@@ -6,3 +6,4 @@ README.Rmd
 ^.travis.yml$
 Rd2.pdf
 .Rd2pdf*
+^\.github$
